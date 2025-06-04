@@ -20,7 +20,7 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../presence/presence_controller.dart';
-import '../setting/local_auth_controller.dart';
+//import '../setting/local_auth_controller.dart';
 import '../setting/presence_type.dart';
 import 'menu_home.dart';
 
@@ -31,6 +31,7 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Intl.defaultLocale = 'id_ID';
     final currentUser = ref.watch(getCurrentUserProvider);
     final key = '${currentUser?.key}';
     ref.listen(fetchProfileProvider(key: key), (previous, next) {
@@ -1058,22 +1059,23 @@ class HomeScreen extends HookConsumerWidget {
         actions: locations
             .map(
               (e) => AlertDialogAction(key: e, label: '${e.namaAsrama}'),
-        )
+            )
             .toList(),
       );
-      if(selected == null) {
+      if (selected == null) {
         return;
       }
 
       final position = await ref.read(getCurrentLocationProvider.future);
-      final result = await ref.read(accountControllerProvider.notifier).presence(
-        key: key,
-        presenceType: PresenceType.normal,
-        latitude: position.latitude,
-        longitude: position.longitude,
-        locationPresenceName: '${selected.idAsrama}',
-        mock: position.isMocked,
-      );
+      final result =
+          await ref.read(accountControllerProvider.notifier).presence(
+                key: key,
+                presenceType: PresenceType.normal,
+                latitude: position.latitude,
+                longitude: position.longitude,
+                locationPresenceName: '${selected.idAsrama}',
+                mock: position.isMocked,
+              );
 
       if (result == null || !context.mounted) return;
       final status = result.status;
@@ -1118,7 +1120,7 @@ class HomeScreen extends HookConsumerWidget {
         ref.invalidate(fetchPresenceProvider(key: key));
         ref.invalidate(fetchProfileProvider(key: key));
       }
-    }catch (error) {
+    } catch (error) {
       context.showErrorMessage(error.toString());
     }
   }
