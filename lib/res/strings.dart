@@ -4,7 +4,7 @@ abstract class AppConstant {
   //    rename setAppName --targets ios,android --value "Al Ukhuwah"
   static const String appName = 'Al Ukhuwah';
   static const String youtubeChannelName = 'Al Ukhuwah TV';
-  static const String teachingPlannerUrl = 'https://app.alukhuwah.com/rpp/';
+  static const String teachingPlannerUrl = 'https://app1.alukhuwah.com/rpp/';
   static const String keyLoginSession = 'login_session';
   static const String keyUserSession = 'user_session';
   static const String keyDeviceToken = 'device_token';
@@ -21,5 +21,4 @@ abstract class AppConstant {
   static const String newsUrl = '${Env.baseUrl}pages/news.php';
   static const String qiblaFinderUrl =
       'https://qiblafinder.withgoogle.com/intl/id/onboarding';
-
 }
