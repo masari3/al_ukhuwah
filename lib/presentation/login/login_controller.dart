@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:al_ukhuwah/di/providers.dart';
 import 'package:al_ukhuwah/models/service_injection.dart';
 import 'package:al_ukhuwah/models/user/login.dart';
@@ -27,17 +27,16 @@ class LoginController extends _$LoginController {
     return login;
   }
 
-  Future<void> saveSession(Login? login,) async {
+  Future<void> saveSession(
+    Login? login,
+  ) async {
     final pref = ref.read(sharedPreferencesHelperProvider);
     await pref.setObject(AppConstant.keyLoginSession, login);
     try {
       final token = await AsyncValue.guard(
-            () => ref.read(firebaseMessagingProvider).getToken(),
+        () => ref.read(firebaseMessagingProvider).getToken(),
       );
       await pref.setString(AppConstant.keyDeviceToken, token.valueOrNull ?? '');
-    } catch(e){
-
-    }
+    } catch (e) {}
   }
-
 }
