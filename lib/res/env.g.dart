@@ -99,5 +99,5 @@ final class _Env {
     growable: false,
   ).map((int i) => _envieddatamapsApiKey[i] ^ _enviedkeymapsApiKey[i]));
 
-  static const String baseUrl = 'https://app.alukhuwah.com/geten/';
+  static const String baseUrl = 'https://app1.alukhuwah.com/geten/';
 }
